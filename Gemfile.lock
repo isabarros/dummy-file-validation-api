@@ -6,6 +6,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.8)
+    dotenv (3.1.4)
     hashery (2.1.2)
     json (2.8.2)
     language_server-protocol (3.17.0.3)
@@ -68,6 +69,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  dotenv (~> 3.1)
   pdf-reader (~> 2.13)
   puma (~> 6.4)
   rackup (~> 2.2)

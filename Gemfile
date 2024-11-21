@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'dotenv', '~> 3.1'
 gem 'pdf-reader', '~> 2.13'
 gem 'puma', '~> 6.4'
 gem 'rackup', '~> 2.2'

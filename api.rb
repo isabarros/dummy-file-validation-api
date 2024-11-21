@@ -3,6 +3,15 @@
 require 'sinatra'
 require 'json'
 require 'securerandom'
+require 'dotenv'
+
+Dotenv.load
+
+API_SECRET_TOKEN = ENV['API_SECRET_TOKEN']
+
+before do
+  authenticate_request!
+end
 
 get '/' do
   'Hello world!'
@@ -17,7 +26,7 @@ post '/validate' do
 
   # Validate file format
   if valid_file_format?(file[:filename])
-    sleep 60
+    # sleep 60
 
     # Randomly return valid or invalid
     status = random_status
@@ -37,4 +46,12 @@ end
 # Helper method to generate random status
 def random_status
   SecureRandom.random_number(2).zero? ? 'valid' : 'invalid'
+end
+
+def authenticate_request!
+  token = request.env['HTTP_AUTHORIZATION']
+
+  return if token && token == "Bearer #{API_SECRET_TOKEN}"
+
+  halt 401, { status: 'error', message: 'Unauthorized' }.to_json
 end
